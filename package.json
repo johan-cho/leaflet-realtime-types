@@ -1,0 +1,35 @@
+{
+    "name": "leaflet-realtime-types",
+    "version": "0.0.1",
+    "types": "index.d.ts",
+    "description": "TypeScript definitions for leaflet-realtime",
+    "homepage": "https://github.com/johan-cho/leaflet-realtime-types",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Johan Cho",
+            "url": "https://github.com/johan-cho"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/johan-cho/leaflet-realtime-types.git"
+    },
+    "scripts": {
+        "test-install": "npm install leaflet-realtime-types --no-save"
+    },
+    "dependencies": {
+        "@types/leaflet": "^1.9.12",
+        "leaflet-realtime": "^2.2.0"
+    },
+    "keywords": [
+        "leaflet-realtime",
+        "types",
+        "typed",
+        "leaflet"
+    ],
+    "author": "johan cho",
+    "bugs": {
+        "url": "https://github.com/johan-cho/leaflet-realtime-types/issues"
+    }
+}
