@@ -20,13 +20,11 @@ declare module "leaflet" {
     /**
      * Updates the layer's data. If `featureData` is provided, it is used to add or update data in the layer, otherwise the layer's source is queried for new data asynchronously
      */
-    update(featureData?: GeoJSON.FeatureCollection | GeoJSON.Feature): this;
+    update(featureData?: GeoJSON.FeatureCollection | GeoJSON.Feature[]): this;
     /**
      * Removes the provided feature or features from the layer
      */
-    remove(
-      featureData: GeoJSON.Feature | GeoJSON.Feature | GeoJSON.FeatureCollection
-    ): this;
+    remove(featureData: GeoJSON.FeatureCollection | GeoJSON.Feature): this;
     /**
      * Retrieves the layer used for a certain feature
      */
@@ -91,12 +89,9 @@ declare module "leaflet" {
 
     /**
      * Used to update an existing feature's layer; by default, points (markers) are updated, other layers are discarded and replaced with a new, updated layer. Allows to create more complex transitions, for example, when a feature is updated
+     * @default (featureData, oldLayer) => newLayer
      */
-    updateFeature(
-      featureData: GeoJSON.Feature,
-      oldLayer: Layer,
-      newLayer: Layer
-    ): any;
+    updateFeature(featureData: GeoJSON.Feature, oldLayer: Layer): Layer;
 
     /**
      * Specifies the layer instance to display the results in
@@ -108,6 +103,22 @@ declare module "leaflet" {
      * @default false
      */
     removeMissing?: boolean;
+
+    /**
+     * cache AJAX requests
+     * @default false
+     */
+    cache?: boolean;
+
+    /**
+     * @default false
+     */
+    onlyRunWhenAdded?: boolean;
+
+    /**
+     * @default true
+     */
+    logErrors?: boolean;
   }
 
   interface RealtimeUpdateEvent extends LeafletEvent {
@@ -122,12 +133,9 @@ declare module "leaflet" {
 
   type RealtimeUpdateEventHandler = (event: RealtimeUpdateEvent) => void;
 
-  interface RealtimeRequestInit extends RequestInit {
-    url: string;
-  }
   type RealtimeSource =
     | string
-    | RealtimeRequestInit
+    | (RequestInit & { url: string })
     | ((
         success: (
           features: GeoJSON.FeatureCollection | GeoJSON.Feature

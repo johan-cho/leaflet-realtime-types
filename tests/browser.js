@@ -7,7 +7,7 @@
 
 const map = L.map("map").setView([51.505, -0.09], 13);
 const realtime = L.realtime("vehicles", {
-  interval: 3 * 1000,
+  cache: true,
 });
 
 realtime.on("update", function (event) {
