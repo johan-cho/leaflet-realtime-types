@@ -1,7 +1,5 @@
 import * as L from "leaflet";
 
-declare namespace leaflet {}
-
 declare module "leaflet" {
   export class Realtime extends GeoJSON {
     constructor(source: RealtimeSource, options?: RealtimeOptions);
